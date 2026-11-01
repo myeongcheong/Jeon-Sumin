@@ -1,0 +1,854 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>내 친구는 지금 갸루男</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Gaegu:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --brown: #70452e;
+  --dark: #38271d;
+  --gold: #e8b34d;
+  --beige: #d8b77b;
+  --cream: #f8efdD;
+  --white: #fffaf0;
+}
+
+body {
+  background-color: #e9d7b7;
+  color: var(--dark);
+  font-family: 'Gowun Dodum', sans-serif;
+  min-height: 100vh;
+}
+
+/* 호피무늬 배경 */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 20% 30%, #765035 0 3px, transparent 4px),
+    radial-gradient(ellipse at 70% 60%, #765035 0 4px, transparent 5px),
+    radial-gradient(ellipse at 45% 80%, #765035 0 3px, transparent 5px),
+    radial-gradient(ellipse at 85% 15%, #765035 0 3px, transparent 5px),
+    radial-gradient(ellipse at 15% 85%, #765035 0 4px, transparent 5px),
+    #e9d7b7;
+  background-size: 75px 80px;
+  opacity: .25;
+}
+
+/* 전체 */
+
+.container {
+  width: 94%;
+  max-width: 1150px;
+  margin: 35px auto;
+  background: var(--cream);
+  border: 4px solid var(--brown);
+  box-shadow: 10px 10px 0 #70452e55;
+  min-height: 800px;
+}
+
+/* 상단 */
+
+.header {
+  background: var(--brown);
+  color: var(--cream);
+  padding: 17px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 5px solid var(--gold);
+}
+
+.header h1 {
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.header span {
+  color: var(--gold);
+}
+
+/* 메인 타이틀 */
+
+.main-title {
+  text-align: center;
+  padding: 30px 15px 15px;
+}
+
+.main-title .sub {
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #987348;
+}
+
+.main-title h2 {
+  font-size: clamp(28px, 5vw, 43px);
+  font-weight: 400;
+  margin: 8px 0;
+  color: var(--brown);
+  letter-spacing: 2px;
+}
+
+.main-title p {
+  font-size: 13px;
+  color: #917657;
+}
+
+/* 캐릭터 영역 */
+
+.character {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  padding: 25px 35px;
+}
+
+.character-image {
+  position: relative;
+  border: 5px solid var(--brown);
+  background: #d8c5a4;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.character-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+}
+
+.image-label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--gold);
+  color: var(--dark);
+  padding: 7px 13px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  border: 2px solid var(--brown);
+}
+
+.character-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.character-info .eng {
+  color: #a27b48;
+  letter-spacing: 4px;
+  font-size: 12px;
+}
+
+.character-info h3 {
+  font-size: 45px;
+  font-weight: 400;
+  color: var(--brown);
+  margin: 8px 0;
+}
+
+.character-info .nickname {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--dark);
+  padding: 5px 13px;
+  width: fit-content;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.basic-info {
+  border-top: 1px solid #cdb58d;
+}
+
+.basic-info div {
+  padding: 10px 4px;
+  border-bottom: 1px solid #cdb58d;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.basic-info b {
+  color: #987348;
+  font-weight: 400;
+}
+
+/* 메뉴 */
+
+.navigation {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 10px 30px 20px;
+  border: 2px solid var(--brown);
+  background: var(--brown);
+  gap: 2px;
+}
+
+.navigation button {
+  border: none;
+  background: #d7bd91;
+  color: var(--dark);
+  padding: 15px 5px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  transition: .25s;
+}
+
+.navigation button:hover,
+.navigation button.active {
+  background: var(--gold);
+  color: var(--dark);
+}
+
+.navigation button small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+/* 페이지 */
+
+.content {
+  padding: 5px 35px 30px;
+}
+
+.page {
+  display: none;
+  animation: fade .35s ease;
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px solid var(--brown);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+.section-title h3 {
+  font-size: 23px;
+  font-weight: 400;
+  color: var(--brown);
+}
+
+.section-title span {
+  font-size: 12px;
+  color: #a17b45;
+  letter-spacing: 2px;
+}
+
+/* 카드 */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid #d4bd96;
+  padding: 20px;
+}
+
+.card h4 {
+  color: var(--brown);
+  font-size: 17px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.card p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #6f5942;
+}
+
+.card .label {
+  color: #a27b48;
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* 호피 장식 */
+
+.leopard {
+  background-color: #d9bb82;
+  background-image:
+    radial-gradient(ellipse at 30% 40%, #70452e 0 5px, transparent 6px),
+    radial-gradient(ellipse at 70% 20%, #70452e 0 4px, transparent 5px),
+    radial-gradient(ellipse at 80% 75%, #70452e 0 5px, transparent 6px),
+    radial-gradient(ellipse at 20% 85%, #70452e 0 4px, transparent 5px);
+  background-size: 65px 60px;
+  padding: 18px;
+  border: 2px solid var(--brown);
+  color: #fff8e8;
+  text-shadow: 1px 1px 3px #38271d;
+  font-size: 20px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* 취향 */
+
+.tag {
+  display: inline-block;
+  padding: 5px 11px;
+  margin: 4px 3px;
+  background: #ead8b5;
+  color: #70452e;
+  font-size: 11px;
+}
+
+/* 이야기 */
+
+.story-box {
+  background: #fffaf0;
+  border-left: 4px solid var(--gold);
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.story-box h4 {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--brown);
+  margin-bottom: 10px;
+}
+
+.story-box p {
+  font-size: 13px;
+  line-height: 2;
+  color: #705a44;
+}
+
+/* 관계 */
+
+.relation-box {
+  border: 2px dashed #b18a51;
+  padding: 25px;
+  background: #f3e6cc;
+}
+
+.relation-box h4 {
+  text-align: center;
+  font-size: 21px;
+  color: var(--brown);
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.relation-box p {
+  font-size: 13px;
+  line-height: 2.1;
+  color: #705a44;
+}
+
+.relation-quote {
+  text-align: center;
+  font-size: 17px;
+  color: #a47739;
+  margin-top: 25px;
+}
+
+/* 버킷리스트 */
+
+.wish-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wish {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fffaf0;
+  border: 1px solid #d4bd96;
+  padding: 14px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.wish input {
+  accent-color: #987044;
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+.wish input:checked + span {
+  text-decoration: line-through;
+  color: #a99983;
+}
+
+.wish-number {
+  color: #b18a51;
+  margin-left: auto;
+  font-size: 11px;
+}
+
+/* 하단 */
+
+.footer {
+  text-align: center;
+  background: var(--brown);
+  color: #e8c98f;
+  padding: 18px;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+/* 모바일 */
+
+@media (max-width: 700px) {
+  .container {
+    width: 96%;
+    margin: 12px auto;
+  }
+
+  .character {
+    grid-template-columns: 1fr;
+    padding: 15px;
+    gap: 18px;
+  }
+
+  .character-image {
+    min-height: 300px;
+    max-height: 450px;
+  }
+
+  .character-image img {
+    min-height: 300px;
+    max-height: 450px;
+  }
+
+  .character-info h3 {
+    font-size: 35px;
+  }
+
+  .navigation {
+    margin: 10px 12px 18px;
+  }
+
+  .navigation button {
+    font-size: 10px;
+    padding: 12px 2px;
+  }
+
+  .content {
+    padding: 5px 15px 25px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .main-title h2 {
+    font-size: 28px;
+  }
+
+  .header h1 {
+    font-size: 14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header class="header">
+    <h1>♡ SUMIN'S WORLD</h1>
+    <span>ギャル男 ✦ 24</span>
+  </header>
+
+  <div class="main-title">
+    <p class="sub">WELCOME TO MY LITTLE WORLD</p>
+    <h2>내 친구는 지금 갸루男</h2>
+    <p>자유롭고 반짝이는 전수민의 일상에 오신 걸 환영합니다 ♡</p>
+  </div>
+
+  <section class="character">
+
+    <div class="character-image">
+      <!-- 캐릭터 이미지를 sumin.jpg로 업로드해 주세요 -->
+      <img src="sumin.jpg" alt="전수민">
+      <div class="image-label">GAL BOY!</div>
+    </div>
+
+    <div class="character-info">
+      <p class="eng">MY DEAREST FRIEND</p>
+      <h3>전수민</h3>
+      <span class="nickname">ギャル男 · 갸루오</span>
+
+      <div class="basic-info">
+        <div><b>NAME</b><span>전수민</span></div>
+        <div><b>AGE</b><span>24 YEARS OLD</span></div>
+        <div><b>GENDER</b><span>MALE</span></div>
+        <div><b>HEIGHT</b><span>175 CM</span></div>
+        <div><b>HAIR</b><span>BLONDE</span></div>
+        <div><b>EYES</b><span>BROWN</span></div>
+      </div>
+    </div>
+
+  </section>
+
+  <nav class="navigation">
+    <button class="active" onclick="showPage('profile',this)">
+      <small>01</small> PROFILE
+    </button>
+    <button onclick="showPage('about',this)">
+      <small>02</small> ABOUT
+    </button>
+    <button onclick="showPage('relation',this)">
+      <small>03</small> YOU & ME
+    </button>
+    <button onclick="showPage('wish',this)">
+      <small>04</small> WISH LIST
+    </button>
+  </nav>
+
+  <main class="content">
+
+    <!-- PROFILE -->
+
+    <section class="page active" id="profile">
+
+      <div class="section-title">
+        <span>✦ 01</span>
+        <h3>PROFILE</h3>
+      </div>
+
+      <div class="card-grid">
+
+        <div class="card">
+          <span class="label">APPEARANCE</span>
+          <h4>외형</h4>
+          <p>
+            자유분방한 분위기가 느껴지는 금발 머리카락.
+            부드러운 갈색 눈동자를 가지고 있다.
+            키는 175cm.
+          </p>
+          <br>
+          <span class="tag">#금발</span>
+          <span class="tag">#갈안</span>
+          <span class="tag">#갸루오</span>
+        </div>
+
+        <div class="card">
+          <span class="label">PERSONALITY</span>
+          <h4>성격</h4>
+          <p>
+            장난기가 많고 농담을 즐긴다.
+            친구들과 편하게 지내며, 아무리 친한 사이라도
+            지켜야 할 선은 지키는 편.
+            은근히 엉큼한 면도 있다.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="label">LIKE</span>
+          <h4>좋아하는 것 ♡</h4>
+          <p>강아지, 자유로운 삶, 사랑하는 사람과 보내는 시간.</p>
+        </div>
+
+        <div class="card">
+          <span class="label">DISLIKE</span>
+          <h4>싫어하는 것 ✕</h4>
+          <p>파충류, 곤충.</p>
+        </div>
+
+      </div>
+
+      <div class="leopard">
+        BE YOURSELF, BE FREE! ✦
+      </div>
+
+      <div class="card">
+        <span class="label">SECRET INFORMATION</span>
+        <h4>알아두면 좋은 사실</h4>
+        <p>
+          술을 굉장히 못 마신다. 조금만 마셔도 금방 취해버리며,
+          취하면 평소와 달리 귀여운 강아지처럼 애교를 부린다.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section class="page" id="about">
+
+      <div class="section-title">
+        <span>✦ 02</span>
+        <h3>ABOUT SUMIN</h3>
+      </div>
+
+      <div class="story-box">
+        <h4>01. 조금은 엉큼한 남자</h4>
+        <p>
+          전수민은 야한 영상물을 즐겨 보는 편이다.
+          초등학교 5학년 때 처음 접한 이후로 꾸준히
+          관심을 가져왔다. 언젠가 성인이 되면 여러 가지
+          로망을 실현해 보겠다고 다짐했지만, 일본에서
+          성인이 되던 날 부모님에게 외출과 외박을 금지당해
+          첫 번째 로망부터 물거품이 되고 말았다.
+          <br><br>
+          다만 아직 연애 경험도 첫 경험도 없는 동정이다.
+          입으로는 온갖 로망을 늘어놓지만 막상 좋아하는
+          사람 앞에서는 의외로 순진해질지도 모른다.
+        </p>
+      </div>
+
+      <div class="story-box">
+        <h4>02. 갸루오가 된 계기</h4>
+        <p>
+          일본의 대학교에 입학한 첫날.
+          전수민의 눈에 들어온 것은 바로 갸루 문화였다.
+          평생 부모님의 압박 속에서 살아온 그에게
+          자유분방하고 자신감 넘치는 갸루들의 모습은
+          그야말로 새로운 세계였다.
+          <br><br>
+          그렇게 전수민은 갸루오가 되었다.
+          대학교를 졸업하고 한국으로 돌아온 지금까지도
+          갸루 문화를 버리지 못하고 있다.
+          오히려 자신의 개성으로 받아들이며 살아가는 중.
+        </p>
+      </div>
+
+      <div class="story-box">
+        <h4>03. 술에 취하면?</h4>
+        <p>
+          평소에는 능글맞고 장난스러운 성격이지만
+          술에 취하면 이야기가 달라진다.
+          금세 얼굴이 붉어지고 강아지처럼 애교를 부린다.
+          평소의 자신감 넘치는 모습과는 정반대.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- RELATION -->
+
+    <section class="page" id="relation">
+
+      <div class="section-title">
+        <span>♡ 03</span>
+        <h3>YOU & ME</h3>
+      </div>
+
+      <div class="relation-box">
+
+        <h4>소꿉친구, 그리고 어쩌면…?</h4>
+
+        <p>
+          초등학교 4학년 때부터 반에서 가장 친하기로
+          유명했던 두 사람.
+          <br><br>
+          학년이 올라갈수록 주변 친구들 사이에서는
+          둘이 썸을 탄다느니, 이미 사귀는 사이 아니냐느니
+          하는 소문이 돌기 시작했다.
+          <br><br>
+          친구들이 전수민에게 {{user}}를 좋아하냐고
+          놀려댈 때마다 수민은 얼굴을 토마토처럼 붉히며
+          필사적으로 부정했다.
+          하지만 솔직히 이런 소문이 돌 정도로
+          {{user}}와 친하다는 사실이 싫지만은 않았다.
+          <br><br>
+          같은 중학교에 입학한 뒤에도 둘은 매 쉬는 시간마다
+          서로의 반을 찾아갔다.
+          그러던 중학교 3학년, 전수민은 부모님을 따라
+          일본으로 유학을 떠나게 된다.
+          <br><br>
+          사실 수민은 {{user}}와 떨어지기 싫었다.
+          하지만 부모님은 그의 장래를 위해 일본으로
+          데려갔고, 그렇게 두 사람은 잠시 떨어지게 되었다.
+          <br><br>
+          그렇다고 연락을 끊은 것은 아니었다.
+          둘은 멀리 떨어져 있어도 꾸준히 연락을 이어갔다.
+          수민은 언젠가 다시 만날 날을 기다렸고,
+          대학교를 졸업하자마자 곧장 한국으로 돌아왔다.
+          <br><br>
+          지금도 두 사람은 서로에게 소중한 친구.
+          적어도 겉으로 보기에는 그렇다.
+          그런데 요즘 들어 {{user}}를 바라보는
+          전수민의 눈빛이 어쩐지 묘하다.
+        </p>
+
+    </section>
+
+    <!-- WISH LIST -->
+
+    <section class="page" id="wish">
+
+      <div class="section-title">
+        <span>✧ 04</span>
+        <h3>MY WISH LIST</h3>
+      </div>
+
+      <div class="card">
+        <h4>전수민의 버킷리스트 💭</h4>
+        <p>
+          언젠가 꼭 이루고 싶은 다섯 가지 로망.
+          항목을 클릭하면 체크할 수 있다!
+        </p>
+      </div>
+
+      <br>
+
+      <div class="wish-list">
+
+        <label class="wish">
+          <input type="checkbox">
+          <span>동정인 여자와 서로 동의한 첫 경험 해보기</span>
+          <span class="wish-number">01</span>
+        </label>
+
+        <label class="wish">
+          <input type="checkbox">
+          <span>SM 플레이를 제외한 다양한 취향 경험하기</span>
+          <span class="wish-number">02</span>
+        </label>
+
+        <label class="wish">
+          <input type="checkbox">
+          <span>사랑하는 사람과 충분히 대화하고 피임을 고려한 특별한 경험 해보기</span>
+          <span class="wish-number">03</span>
+        </label>
+
+        <label class="wish">
+          <input type="checkbox">
+          <span>바니걸 실제로 구경하기</span>
+          <span class="wish-number">04</span>
+        </label>
+
+        <label class="wish">
+          <input type="checkbox">
+          <span>사랑하는 여자와 행복한 가정을 꾸리고 다섯 아이의 아빠 되기</span>
+          <span class="wish-number">05</span>
+        </label>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    © 2026 SUMIN'S WORLD · MADE WITH LOVE ♡
+  </footer>
+
+</div>
+
+<script>
+
+// 페이지 클릭 전환
+
+function showPage(pageId, button) {
+
+  const pages = document.querySelectorAll('.page');
+  const buttons = document.querySelectorAll('.navigation button');
+
+  pages.forEach(page => {
+    page.classList.remove('active');
+  });
+
+  buttons.forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  document.getElementById(pageId).classList.add('active');
+
+  button.classList.add('active');
+
+  window.location.hash = pageId;
+
+}
+
+// 새로고침해도 선택한 메뉴 유지
+
+window.addEventListener('load', () => {
+
+  const hash = window.location.hash.replace('#', '');
+
+  if (!hash) return;
+
+  const target = document.getElementById(hash);
+
+  const button = document.querySelector(
+    `.navigation button[onclick*="${hash}"]`
+  );
+
+  if (target && button) {
+    showPage(hash, button);
+  }
+
+});
+
+// 버킷리스트 저장
+
+const wishItems = document.querySelectorAll('.wish input');
+
+wishItems.forEach((item, index) => {
+
+  item.checked =
+    localStorage.getItem('sumin_wish_' + index) === 'true';
+
+  item.addEventListener('change', () => {
+
+    localStorage.setItem(
+      'sumin_wish_' + index,
+      item.checked
+    );
+
+  });
+
+});
+
+</script>
+
+</body>
+</html>
